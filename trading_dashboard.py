@@ -16,7 +16,17 @@ exchange = ccxt.binance()
 symbol = 'BTC/USDT'
 timeframe = '1h'
 limit = 100
-ohlcv = exchange.fetch_ohlcv(symbol, timeframe=timeframe, limit=limit)
+import time
+for attempt in range(3):
+   try:
+       ohlcv = exchange.fetch_ohlcv(symbol, timeframe=timeframe, limit=limit)
+       break
+   except Exception as e:
+       st.warning(f"Attempt {attempt+1}: Failed to fetch data, retrying...")
+       time.sleep(2)
+else:
+   st.error("Failed to load data from Binance after 3 attempts. Please refresh.")
+   st.stop()
 df = pd.DataFrame(ohlcv, columns=['Timestamp', 'Open', 'High', 'Low', 'Close', 'Volume'])
 df['Date'] = pd.to_datetime(df['Timestamp'], unit='ms')
 df['EMA20'] = df['Close'].ewm(span=20, adjust=False).mean()
