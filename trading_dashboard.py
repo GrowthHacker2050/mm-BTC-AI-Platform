@@ -15,10 +15,9 @@ section = st.sidebar.radio("Go to", ["Dashboard", "Market Intel", "Trade Notes",
 
 # ✅ Binance with API Key from Streamlit Secrets
 exchange = ccxt.binance({
-'apiKey': st.secrets["acwehnUlmMOui6SViK6pjXyYf7aiD66aFQGnxVykyMXu7MmqzfaoRsWpKIaP3lGw"],
-'secret': st.secrets["Mes8p5kwShYsZ42eGNd33M1O0B92MxbwxXtiphBzWlir9PeSh1bbkbyOT5eKwCGP"],
+'apiKey': st.secrets["BINANCE_API_KEY"],
+'secret': st.secrets["BINANCE_SECRET"],
 'enableRateLimit': True
-
 })
 
 # Load BTC/USDT data
