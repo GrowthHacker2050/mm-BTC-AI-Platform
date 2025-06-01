@@ -68,7 +68,7 @@ with col2:
   report = classification_report(y_test, y_pred, output_dict=True)
   st.metric("Model Accuracy", f"{report['accuracy'] * 100:.2f}%")
 
-elif section == "Market Intel":)
+elif section == "Market Intel":
   st.title("🧠 Market Intelligence")
   st.write("This page will soon include live crypto headlines and sentiment analysis.")
 
